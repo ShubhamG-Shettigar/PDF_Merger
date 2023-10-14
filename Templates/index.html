@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dela+Gothic+One">
+    <!-- Bootstrap Popover CSS -->
+    <style>
+        .popover-content {
+            max-width: 300px;
+        }
+
+        .navbar-brand {
+            font-family: 'Dela Gothic One', serif;
+        }
+    </style>
+
+    <title>PDF Merger</title>
+</head>
+
+<body>
+    <!-- Pdf merging was overlapped with the previous one(was getting appended)  Resolved using reset function of pdf-merger-js-->
+    <!-- We have given timestamps so that the pdf name would be unique since earlier it was saved as 'merged.pdf'(a single name for all pdfs) -->
+    <!-- So it was overlapping the pdfs -->
+    <!-- To avoid server overload users can be asked to take out their pdfs within 24 hrs else pdf would be lost -->
+    <!-- To be added : File Name can be saved in a particular naming convention  -->
+    <!-- Only 2 pdfs can be merged... Resolved using Rest Operator in async function (mergePdfs) of merge.js-->
+    <!-- To be added : UI mei show links referred for the project  -->
+
+    <!-- Issues faced -->
+    <!-- No Page wise selection of pdfs to be merged -->
+    <!-- To be added : Can view JSon format  -->
+    <!-- To be added : View Metadata pdf-merger-js ka function  -->
+    <!-- To be added : File location to be downloaded can be manual  -->
+    <!-- Encrypted files ka error is not human readable -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">PDF-Merger</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="theory.html" target="_blank">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Learning Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/getting-started/introduction/"
+                            target="_blank">BootStrap 4.0</a>
+                        <a class="dropdown-item" href="http://expressjs.com/en/resources/middleware/multer.html"
+                            target="_blank">Express Multer Middleware</a>
+                        <a class="dropdown-item" href="https://www.npmjs.com/package/pdf-merger-js"
+                            target="_blank">Pdf-Merger-JS</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://expressjs.com/en/starter/hello-world.html"
+                            target="_blank">ExpressJs
+                            Basics</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="my-4">PDF Merger Tool</h1>
+        <!-- Enctype is used if we want to give the files to server -->
+        <form method="post" action="/merge" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Select up to 4 .pdf files</label>
+                <input type="file" name="mypdf" class="form-control-file" id="exampleFormControlFile1" multiple
+                    accept=".pdf">
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-success my-4">Submit</button>
+                <!-- Separate button to trigger the popover -->
+                <button type="button" class="btn btn-primary my-4" data-toggle="popover" data-placement="right"
+                    title="Popover Title" data-content="<h1>Multer is a NodeJs Middleware used to handle multipart form data (used for uploading files)</h1>
+                    The app.post method in server.js posts the merged pdf as output on the browser once merging is done. This functionality is implemented using Multer 
+                    We can limit the file count to be merged using Multer 
+                    MulterOutput folder stores the merged pdf content in raw format 
+                    <h1>Things that were installed<h1><h3>Node Express Nodemon Multer pdf-merger-js</h3>
+                    <h1>merged.pdf is a sample output of test.js file which merges the hard coded pdf1 and pdf2</h1>
+                    Public folder is used to store the merged pdf 
+                    Test.js mei hard coded pdfs are there where we provide pdf1 and pdf2 manually
+                    merge.js is the actual js file which takes dynamic pdfs 
+                    Merge.js just serves the logic of merging. It can be written inside server.js as well
+                    But for better readability it's written separately
+                    If we provide more than mentioned files, Multer array throws Unexpected Field error">Theory</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- Enable Bootstrap Popover -->
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+</body>
+
+</html>
